@@ -12,6 +12,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)](https://www.python.org/)
 
+**[🎬 Watch Live Demo](https://drive.google.com/file/d/1r7iZLseAsWh-Gj45ae07v69hiCAol-Zl/view?usp=sharing)**
 
 </div>
 
