@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: swapshield-ml
+Version: 1.0.0
+Summary: Multimodal return-substitution verification for SwapShield AI
+Requires-Python: >=3.11
+Provides-Extra: gpu
+Requires-Dist: torch>=2.6; extra == "gpu"
+Requires-Dist: transformers<6,>=4.57; extra == "gpu"
+Requires-Dist: pillow>=11; extra == "gpu"
+Requires-Dist: numpy>=2.1; extra == "gpu"
+Requires-Dist: accelerate>=1.3; extra == "gpu"
+Requires-Dist: bitsandbytes>=0.45; extra == "gpu"
+Requires-Dist: fastapi>=0.115; extra == "gpu"
+Requires-Dist: uvicorn[standard]>=0.34; extra == "gpu"
+Requires-Dist: python-multipart>=0.0.20; extra == "gpu"
+Requires-Dist: python-dotenv>=1.0; extra == "gpu"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: ruff>=0.9; extra == "dev"
+Provides-Extra: train
+Requires-Dist: numpy>=2.1; extra == "train"
+Requires-Dist: scikit-learn<2,>=1.6; extra == "train"

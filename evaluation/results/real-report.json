@@ -1,0 +1,84 @@
+{
+  "cost_assumptions": {
+    "false_negative_inr": 6200,
+    "false_positive_inr": 80
+  },
+  "protocol": "item-disjoint-v1",
+  "test": {
+    "average_precision": 0.9958333333333333,
+    "bootstrap_95_ci": {
+      "f1": [0.8, 1.0],
+      "precision": [1.0, 1.0],
+      "recall": [0.6666666666666666, 1.0]
+    },
+    "calibration_error": 0.04635893881151611,
+    "cases": 30,
+    "confusion": {
+      "fn": 2,
+      "fp": 0,
+      "tn": 15,
+      "tp": 13
+    },
+    "f1": 0.9285714285714286,
+    "false_positive_cost": 0,
+    "genuine_recapture_rate": 0.3333333333333333,
+    "latency_ms": {
+      "p50": 11485.8935,
+      "p95": 65404.5498
+    },
+    "missed_substitution_loss": 12400,
+    "positive_rate": 0.5,
+    "precision": 1.0,
+    "recall": 0.8666666666666667,
+    "recapture_rate": 0.4,
+    "slices": {
+      "category:chair": {
+        "cases": 6,
+        "confusion": { "fn": 0, "fp": 0, "tn": 3, "tp": 3 },
+        "f1": 1.0,
+        "positive_rate": 0.5,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "category:lamp": {
+        "cases": 8,
+        "confusion": { "fn": 2, "fp": 0, "tn": 4, "tp": 2 },
+        "f1": 0.6666666666666666,
+        "positive_rate": 0.5,
+        "precision": 1.0,
+        "recall": 0.5
+      },
+      "category:sofa": {
+        "cases": 8,
+        "confusion": { "fn": 0, "fp": 0, "tn": 4, "tp": 4 },
+        "f1": 1.0,
+        "positive_rate": 0.5,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "category:table": {
+        "cases": 8,
+        "confusion": { "fn": 0, "fp": 0, "tn": 4, "tp": 4 },
+        "f1": 1.0,
+        "positive_rate": 0.5,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "slice:abo-360": {
+        "cases": 30,
+        "confusion": { "fn": 2, "fp": 0, "tn": 15, "tp": 13 },
+        "f1": 0.9285714285714286,
+        "positive_rate": 0.5,
+        "precision": 1.0,
+        "recall": 0.8666666666666667
+      }
+    }
+  },
+  "threshold_selection": {
+    "expected_cost": 0,
+    "false_negatives": 0,
+    "false_positives": 0,
+    "split": "validation",
+    "threshold": 0.92
+  }
+}

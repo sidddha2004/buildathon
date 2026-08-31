@@ -1,0 +1,56 @@
+{
+  "calibration": {
+    "coefficient": 1.0809076129219788,
+    "intercept": -0.04598477377048898,
+    "method": "platt-oof-5-fold"
+  },
+  "classifier": {
+    "coefficients": [
+      0.5571695675505057,
+      2.788219029786983,
+      0.0,
+      0.0,
+      -0.21767385272013756
+    ],
+    "intercept": -0.1670947485570075
+  },
+  "cost_assumptions": {
+    "false_negative_inr": 6200,
+    "false_positive_inr": 80
+  },
+  "decision": {
+    "min_image_quality": 0.46,
+    "threshold": 0.92
+  },
+  "features": [
+    "vision_dissimilarity",
+    "vlm_mismatch",
+    "serial_mismatch",
+    "weight_delta_clipped",
+    "quality_deficit"
+  ],
+  "kind": "swapshield-calibrated-logistic-fusion",
+  "normalization": {
+    "mean": [
+      0.39642546022727265,
+      0.49420454545454534,
+      0.0,
+      0.0,
+      0.5700608124999998
+    ],
+    "scale": [
+      0.22299655838851734,
+      0.43985204534879796,
+      1.0,
+      1.0,
+      0.1291430568507005
+    ]
+  },
+  "schema_version": 1,
+  "seed": 5050,
+  "training": {
+    "calibration_folds": 5,
+    "train_cases": 176,
+    "validation_cases": 32
+  }
+}

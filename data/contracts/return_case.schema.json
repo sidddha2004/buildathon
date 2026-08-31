@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://swapshield.ai/schemas/return-case.json",
+  "title": "SwapShield return verification case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "order_id", "amount_inr", "outbound", "returned"],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "order_id": { "type": "string", "minLength": 1 },
+    "amount_inr": { "type": "number", "minimum": 0 },
+    "outbound": { "$ref": "#/$defs/evidence" },
+    "returned": { "$ref": "#/$defs/evidence" },
+    "ground_truth": {
+      "type": ["string", "null"],
+      "enum": ["genuine", "substitution", "insufficient_evidence", null]
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sku", "weight_grams", "image_refs"],
+      "properties": {
+        "sku": { "type": "string", "minLength": 1 },
+        "serial": { "type": ["string", "null"] },
+        "weight_grams": { "type": "number", "exclusiveMinimum": 0 },
+        "image_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "captured_at": { "type": ["string", "null"], "format": "date-time" },
+        "content_hash": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
+
