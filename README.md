@@ -12,7 +12,6 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)](https://www.python.org/)
 
-[Live Demo](#) · [Documentation](#) · [Report Bug](#) · [Request Feature](#)
 
 </div>
 
@@ -651,11 +650,6 @@ The merchant return fraud problem affects countless businesses globally. This pr
 - 🎴 [Model Card](docs/MODEL_CARD.md)
 - 🛡️ [Threat Model](docs/THREAT_MODEL.md)
 
-### Community
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/swapshield-ai/discussions)
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/yourusername/swapshield-ai/issues)
-- ✨ **Feature Requests**: [GitHub Issues](https://github.com/yourusername/swapshield-ai/issues)
-
 ### Citation
 
 If you use SwapShield AI in your research or production, please cite:
@@ -674,7 +668,5 @@ If you use SwapShield AI in your research or production, please cite:
 <div align="center">
 
 **Built with ❤️ for safer e-commerce**
-
-[⭐ Star us on GitHub](https://github.com/yourusername/swapshield-ai) · [🐦 Follow updates](#) · [📧 Contact us](mailto:contact@example.com)
 
 </div>
