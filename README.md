@@ -52,18 +52,33 @@ Open `http://127.0.0.1:5173` to access the verification dashboard.
 
 ## 🎬 Demo
 
-### Verification Dashboard in Action
+### SwapShield Dashboard Interface
 
 ![SwapShield Dashboard Interface](docs/assets/dashboard-screenshot.png)
 
-*The merchant review queue shows risk-prioritized returns with transparent evidence fusion and calibrated recommendations.*
+The merchant review queue displays risk-prioritized returns with:
+- **Evidence Cards**: Dispatch fingerprint vs. returned item comparison
+- **Calibrated Risk Score**: 83/100 with transparent decision rationale
+- **Source-Bound Evidence**: Every finding cites its origin (DINOv2, Qwen3-VL, OCR, warehouse records)
+- **Grounded Investigator**: Structured observations with no autonomous adverse actions
+- **Defense-Only Policy**: Explicit "no fraud accusation" boundary enforced
 
-### Real-time Verification Flow
+### Evidence Engines & Pipeline
 
-1. **Upload Evidence**: Dispatch and return images with SKU/metadata
-2. **Multimodal Analysis**: Visual similarity + VLM observations + structured signals
-3. **Calibrated Scoring**: Probability with explicit uncertainty bounds
-4. **Human Decision**: Final approve/recapture/review with full audit trail
+![Evidence Engines Pipeline](docs/assets/evidence-engines.png)
+
+The verification pipeline combines five validated stages:
+1. **DINOv2 small** - Pair embedding similarity (Local CUDA ✓)
+2. **Qwen3-VL 4B** - Evidence-only comparison (4-bit, token-capped ✓)
+3. **Schema + grounder** - Reject extra fields and citations (Unit-tested ✓)
+4. **Risk policy** - Approve, recapture, or review (Deterministic ✓)
+5. **LLM evidence auditor** - Independent consistency check (Optional API ✓)
+
+### Implementation Truth Table
+
+![Implementation Truth Table](docs/assets/implementation-truth-table.png)
+
+Every layer is verified with evidence—nothing is claimed without tests, code, or benchmark validation.
 
 ---
 
@@ -103,15 +118,22 @@ SwapShield AI provides **transparent, evidence-based verification** with:
 
 ## ✨ Key Features
 
+### 🎯 Real-Time Risk Dashboard
+- **Live Review Queue**: Risk-prioritized returns with calibrated scores (0-100)
+- **Evidence Comparison**: Side-by-side dispatch vs. returned item fingerprinting
+- **Transparent Decision Rationale**: Every risk factor explained with source attribution
+- **Human-in-the-Loop**: Three-way decision system (Approve/Recapture/Review)
+- **Audit Trail**: Complete evidence history with printable reviewer reports
+
 ### 🔍 Multimodal Evidence Fusion
 
-| Signal | Technology | Role |
-|--------|-----------|------|
-| **Visual Similarity** | DINOv2-small pair encoder | Detects visual identity mismatches |
-| **Structured Observations** | Qwen3-VL-4B (4-bit quantized) | Extracts product-level discrepancies |
-| **Serial Verification** | OCR + pattern matching | Validates serial/model identifiers |
-| **Weight Analysis** | Warehouse integration | Flags weight deviations beyond tolerance |
-| **Quality Gate** | Sharpness + blur detection | Requests recapture for insufficient evidence |
+| Signal | Technology | Role | Example from Dashboard |
+|--------|-----------|------|----------------------|
+| **Visual Similarity** | DINOv2-small pair encoder | Detects visual identity mismatches | "58% match" → substitution detected |
+| **Structured Observations** | Qwen3-VL-4B (4-bit quantized) | Extracts product-level discrepancies | "SKU & variant: Size differs" |
+| **Serial Verification** | OCR + pattern matching | Validates serial/model identifiers | "Serial OCR: Different" |
+| **Weight Analysis** | Warehouse integration | Flags weight deviations beyond tolerance | "−88 g" → below tolerance |
+| **Quality Gate** | Sharpness + blur detection | Requests recapture for insufficient evidence | "Image quality: Insufficient" |
 
 ### 🎯 Calibrated Decision System
 
@@ -124,11 +146,39 @@ Input Evidence → Feature Extraction → Fusion Classifier → Calibration → 
                                           │                             │
                                     Recapture                    Human Review
                                           │                             │
-                                    (Request clearer              (Hold refund,
-                                    evidence)                      investigate)
+                            (Request clearer                    (Hold refund,
+                            evidence)                          investigate)
+                                          │                             │
+                              Low-quality evidence              Multiple verified
+                              triggers safe abstention          mismatches detected
 ```
 
-### 🛡️ Safety & Compliance
+### 🎛️ Dashboard Interface Components
+
+**Review Queue Tab:**
+- **Incoming Returns Panel**: Risk-prioritized cases with scores and recommendations
+- **Evidence Comparison Cards**: Side-by-side dispatch vs. returned item analysis
+- **Verified Evidence Table**: Source-bound signals with match/mismatch/uncertain indicators
+- **Grounded Investigator**: Structured narrative with explicit evidence citations
+- **Human Decision Controls**: Approve/Recapture/Review buttons (no autonomous actions)
+
+**Live Verify Tab:**
+- Real-time image upload with dispatch/return pairing
+- Live inference with progress indicators
+- Calibrated probability with confidence intervals
+- Optional LLM auditor assessment (advisory only)
+
+**Evaluation Tab:**
+- Locked benchmark results (precision 100%, recall 86.7%)
+- Confusion matrix with cost analysis
+- Category performance slices (chair: perfect, lamp: 50% recall)
+- Threshold sandbox for sensitivity analysis
+
+**Model Pipeline Tab:**
+- **Implementation Truth Table**: 10 verified layers, 0 pending
+- **Authority Boundary**: Explicit safety contracts
+- **Verified Smoke Result**: Real mouse pair test data
+- **Layer Status**: Risk+abstention, VLM guard, auditor, safety tests all verified
 
 - **Strict JSON Schema Validation**: Rejects unsupported claims and extra fields
 - **Prompt-Injection Containment**: Treats uploaded text as untrusted data
@@ -173,6 +223,23 @@ flowchart TD
 - **FastAPI** → GPU models (lazy-loaded, request serialization)
 - **Fusion Model** → Versioned JSON artifact (no pickle required)
 - **LLM Auditor** → OpenAI-compatible API (optional, advisory-only)
+
+### 🎨 Professional UI Design
+
+The dashboard features a production-grade interface with:
+- **Dark Theme**: Professional dark mode with green (#44E0A7) accent color
+- **Status Badges**: Color-coded decision indicators (green/yellow/red)
+- **Risk Dot System**: Visual priority markers in the queue (safe/uncertain/risk)
+- **Evidence Cards**: Scannable comparison panels with SKU/serial/weight metadata
+- **Progress Indicators**: Animated calibration bars and confidence intervals
+- **Responsive Layout**: Mobile-optimized design with collapsible sections
+- **Accessibility**: High contrast ratios and keyboard navigation support
+
+**Dashboard Tabs:**
+- **Review Queue**: Risk-prioritized returns with evidence analysis
+- **Live Verify**: Real-time upload and inference workflow
+- **Evaluation**: Locked benchmark results and performance metrics
+- **Model Pipeline**: Implementation status and safety boundaries
 
 ---
 
@@ -331,45 +398,58 @@ Open `http://127.0.0.1:5173` in your browser.
 
 ## 📊 Usage
 
+### Review Queue Workflow
+
+1. **Select Case**: Click on any incoming return in the queue (shows risk score and recommendation)
+2. **Review Evidence**: Compare dispatch vs. returned item fingerprints with:
+   - Visual similarity percentages
+   - SKU/serial validation
+   - Weight analysis
+   - Image quality assessment
+3. **Check Signals**: Review the verified evidence table showing:
+   - ✅ **Match** (consistent evidence)
+   - ⚠️ **Mismatch** (detected discrepancies)  
+   - ❓ **Uncertain** (insufficient data)
+4. **Read Investigation**: Review the grounded investigator narrative with evidence citations
+5. **Make Decision**: Click Approve/Recapture/Review based on recommendation and evidence
+
 ### Live Verification
 
 1. Navigate to **"Live verify"** tab
 2. Upload dispatch and return images (JPEG/PNG/WebP, max 12MB)
 3. Enter SKU/serial/weight metadata
 4. Click **"Verify Return"** to analyze
+5. Review results with:
+   - Calibrated risk probability
+   - Evidence breakdown
+   - Optional LLM auditor assessment
 
 ### Seeded Demo Cases
 
-The **"Review queue"** tab includes 4 pre-configured cases demonstrating:
-- **Genuine return** (consistent evidence)
-- **Substitution** (visual + serial mismatches)
-- **Insufficient evidence** (quality gate triggered)
-- **Size substitution** (SKU mismatch with partial similarity)
+The **"Review queue"** tab includes 4 pre-configured cases:
+- **RET-1042**: Auralite Pro Earbuds - Substitution detected (58% visual match, different serial)
+- **RET-1041**: Northstar Trail Shoe - Genuine return (94% visual match, consistent weight)
+- **RET-1039**: Eon Smartwatch S2 - Insufficient evidence (31% image quality, recapture requested)
+- **RET-1036**: Morrow Linen Shirt - Size substitution (66% visual match, SKU size differs)
+
+Each case shows the complete evidence flow with source attribution and calibrated scoring.
+
+### Model Pipeline Tab
+
+The **"Model pipeline"** tab provides:
+- **Implementation Truth Table**: Status of every verified layer (10 verified, 0 pending)
+- **Authority Boundary**: Explicit safety contracts (no fraud accusation, no autonomous rejection)
+- **Verified Smoke Result**: Real mouse pair test with 95% same-product likelihood
+
+### Evaluation Tab
+
+The **"Evaluation"** tab shows:
+- **Locked Benchmark**: 30-pair ABO test results (100% precision, 86.7% recall)
+- **Outcome Audit**: Confusion matrix with TP=13, FP=0, TN=15, FN=2
+- **Category Slices**: Performance by furniture category (chair, sofa, table, lamp)
+- **POC Threshold Sandbox**: Interactive sensitivity analysis on synthetic data
 
 ### API Usage
-
-```bash
-curl -X POST http://127.0.0.1:8000/v1/verify \
-  -F "dispatch_image=@dispatch.jpg" \
-  -F "return_image=@return.jpg" \
-  -F "dispatch_sku=SKU-100" \
-  -F "return_sku=SKU-100" \
-  -F "dispatch_serial=ABC-123" \
-  -F "return_serial=ABC-123" \
-  -F "dispatch_weight_grams=1000" \
-  -F "return_weight_grams=1010"
-```
-
-**Response:**
-```json
-{
-  "risk_score": 15,
-  "probability": 0.148,
-  "decision": "approve",
-  "evidence": [...],
-  "auditor_assessment": {...}
-}
-```
 
 ---
 
